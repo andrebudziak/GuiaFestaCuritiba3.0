@@ -1,0 +1,20 @@
+﻿@using System.Text.RegularExpressions
+@model IEnumerable<SiteGuiaFestaCuritiba3._0.Models.Menu>
+
+@using (Html.BeginForm("Index", "Home", FormMethod.Post))
+{
+
+    @Html.AntiForgeryToken()
+
+    foreach (var item in Model)
+    {
+        <li class="normal_menu">
+       @Html.ActionLink(item.descricao, "Index", "Categoria", new { id = item.codigo }, new
+       {
+           href = "/Categoria/" + @Regex.Replace(@Regex.Replace(item.descricao, @"[^A-Za-z0-9\.\,_]", "_"), @"(?i)[^A-Za-z0-9áéíóúàèìòùâêîôûãõç\s]", "")+"/"+item.codigo
+       })
+        </li>
+    }
+
+}
+

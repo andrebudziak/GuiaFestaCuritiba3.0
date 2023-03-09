@@ -1,0 +1,129 @@
+﻿@model SiteGuiaFestaCuritiba3._0.Models.Anuncio_Link
+@{
+    ViewBag.Title = "Incluir Link Anuncio";
+    Layout = "~/Views/Shared/_LayoutAdmin.cshtml";
+}
+
+<!-- Intro Banner -->
+<div class="welcome_banner">
+    <div class="content clearfix">
+        <h3>Painel de Controle - Incluir Link Anuncio</h3>
+    </div>
+</div>
+<!-- End Intro Banner -->
+
+@using (Ajax.BeginForm("Salvar_Link", "Anuncio_Link", new AjaxOptions { HttpMethod = "Post", UpdateTargetId = "dvPrincipal" }, null, new { a = Model }))
+{
+
+    @Html.AntiForgeryToken()
+
+    <div id="dvPrincipal">
+        <table id="tblCriar" class="table table-hover">
+            <thead>
+                <tr>
+                    <th colspan="13">Codigo:@Html.EditorFor(model => model.codigo, new { htmlAttributes = new { @class = "form-control", @readonly = "readonly" } })</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>
+                        <table>
+                            <thead>
+                                <tr></tr>
+                                <tr></tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>
+                                        <div class="input-group">
+                                            <span class="input-group-btn">
+                                                @Html.EditorFor(model => model.codigo_anuncio, new { htmlAttributes = new { @id = "txtCodigoCliente", @class = "form-control", @style = "width:100px;", @readonly = "readonly" } })
+                                                <button class="btn btn-default" data-toggle="modal" data-target="#mdlDetalheCliente" type="button"><span class="glyphicon glyphicon-search" aria-hidden="true"></span></button>
+                                            </span>
+                                        </div><!-- /input-group -->
+
+                                    </td>
+                                    <td>
+                                        @Html.EditorFor(model => model.nome_fantasia, new { htmlAttributes = new { @id = "txtNomeFantasia", @class = "form-control", @style = "width:400px;", @readonly = "readonly" } })
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+
+
+                    </td>
+                </tr>
+
+                <tr>
+                    <td>
+                        Instagram:@Html.EditorFor(model => model.orkut, new { htmlAttributes = new { @class = "form-control" } })
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        Facebook:@Html.EditorFor(model => model.facebook, new { htmlAttributes = new { @class = "form-control" } })
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        Twitter:@Html.EditorFor(model => model.twitter, new { htmlAttributes = new { @class = "form-control" } })
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        Gmais:@Html.EditorFor(model => model.gmais, new { htmlAttributes = new { @class = "form-control" } })
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        Pinterest:@Html.EditorFor(model => model.pinterest, new { htmlAttributes = new { @class = "form-control" } })
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+
+    <table>
+        <thead>
+            <tr></tr>
+            <tr></tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td>
+                    <input type="submit" class="btn btn-default btn-lg" value="Salvar" name="Command">
+                </td>
+                <td>
+                    <a class="main_button medium_btn bottom_space" href="@Url.Action("Listar_Link", "Anuncio_Link")" target="_self">
+                        <i class="in_left ico-backward"></i>Voltar
+                    </a>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+}
+
+<div class="modal fade" id="mdlDetalheCliente" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                <h4 class="modal-title">Selecione um Cliente</h4>
+            </div>
+            <div class="modal-body">
+                @using (Ajax.BeginForm("Salvar_Link", "Anuncio_Link", new AjaxOptions { HttpMethod = "Post", UpdateTargetId = "listaCliente" }))
+                {
+                    @Html.TextBox("SearchCliente") <input type="submit" id="btnSearch" value="Pesquisar" class="btn btn-default btn-lg" name="Command" />
+                }
+                <div id="listaCliente">
+                    @{ Html.RenderPartial("_BuscaAnuncio", Model.iAnuncio); }
+                </div>
+
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="main_button medium_btn bottom_space" data-dismiss="modal">Close</button>
+            </div>
+        </div>
+    </div>
+</div>
+

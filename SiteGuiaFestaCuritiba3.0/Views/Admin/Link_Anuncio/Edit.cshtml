@@ -1,0 +1,106 @@
+﻿@model SiteGuiaFestaCuritiba3._0.Models.Anuncio_Link
+@{
+    ViewBag.Title = "Editar Link Anuncio";
+    Layout = "~/Views/Shared/_LayoutAdmin.cshtml";
+}
+
+<!-- Intro Banner -->
+<div class="welcome_banner">
+    <div class="content clearfix">
+        <h3>Painel de Controle - Editar - Link Anuncio</h3>
+    </div>
+</div>
+<!-- End Intro Banner -->
+
+@using (Ajax.BeginForm("Salvar_Link", "Anuncio_Link", new AjaxOptions { HttpMethod = "Post" }))
+{
+    @Html.AntiForgeryToken()
+
+    <table class="table table-hover">
+        <thead>
+            <tr>
+                <th colspan="12">Codigo:@Html.EditorFor(model => model.codigo, new { htmlAttributes = new { @class = "form-control", @readonly = "readonly" } })</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td>
+                    <table>
+                        <thead>
+                            <tr></tr>
+                            <tr></tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>
+                                    <div class="input-group">
+                                        <span class="input-group-btn">
+                                            @Html.EditorFor(model => model.codigo_anuncio, new { htmlAttributes = new { @class = "form-control", @style = "width:100px;", @readonly = "readonly" } })
+                                        </span>
+                                    </div><!-- /input-group -->
+
+                                </td>
+                                <td>
+                                    @Html.EditorFor(model => model.nome_fantasia, new { htmlAttributes = new { @class = "form-control", @style = "width:400px;", @readonly = "readonly" } })
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+
+                </td>
+
+            </tr>
+
+            <tr>
+                <td>
+                    Instagram:@Html.EditorFor(model => model.orkut, new { htmlAttributes = new { @class = "form-control" } })
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    Facebook:@Html.EditorFor(model => model.facebook, new { htmlAttributes = new { @class = "form-control" } })
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    Twitter:@Html.EditorFor(model => model.twitter, new { htmlAttributes = new { @class = "form-control" } })
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    Gmais:@Html.EditorFor(model => model.gmais, new { htmlAttributes = new { @class = "form-control" } })
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    Pinterest:@Html.EditorFor(model => model.pinterest, new { htmlAttributes = new { @class = "form-control" } })
+                </td>
+            </tr>
+        </tbody>
+    </table>
+
+
+        <table>
+            <thead>
+                <tr></tr>
+                <tr></tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>
+                        <form action="@Url.Action("Salvar_Link","Anuncio_Link")" method="post">
+                            <div>
+                                <input type="submit" class="btn btn-default btn-lg" value="Salvar">
+                            </div>
+                        </form>
+                    </td>
+                    <td>
+                        <a class="main_button medium_btn bottom_space" href="@Url.Action("Listar_Link", "Anuncio_Link")" target="_self">
+                            <i class="in_left ico-backward"></i>Voltar
+                        </a>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+
+}

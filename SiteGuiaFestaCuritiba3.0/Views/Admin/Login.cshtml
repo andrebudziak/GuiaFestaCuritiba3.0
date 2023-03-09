@@ -1,0 +1,121 @@
+﻿@model SiteGuiaFestaCuritiba3._0.Models.User
+@{
+    Layout = "";
+    ViewBag.Title = "Login";
+}
+<!DOCTYPE html>
+
+<head>
+
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+
+    <!-- Important stuff for SEO, don't neglect. (And don't dupicate values across your site!) -->
+    <title>Painel de Controle</title>
+    <meta name="author" content="" />
+    <meta name="description" content="" />
+
+    <!-- Don't forget to set your site up: http://google.com/webmasters -->
+    <meta name="google-site-verification" content="" />
+    <meta name="Copyright" content="" />
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <!-- Use Iconifyer to generate all the favicons and touch icons you need: http://iconifier.net -->
+    <link rel="shortcut icon" href="~/images/favicon/favicon.ico" type="image/x-icon" />
+
+    <!-- concatenate and minify for production -->
+    <link rel="stylesheet" href="~/css/style.css" type="text/css" media="all" />
+    <link rel="stylesheet" type="~/text/css" href="css/settings.css" media="screen" />
+    <link rel="stylesheet" href="~/css/bootstrap.css" type="text/css" media="all" />
+    <link rel="stylesheet" href="~/css/animate.min.css" type="text/css" media="all" />
+
+    <link rel="stylesheet" href="~/css/magnific-popup.css" type="text/css" media="all" />
+    <link rel="stylesheet" href="~/css/icon-fonts.css" type="text/css" media="all" />
+
+    <link href='http://fonts.googleapis.com/css?family=Oswald:400,700,300' rel='stylesheet' type='text/css'>
+    <link href='http://fonts.googleapis.com/css?family=Lato:300,300italic,400italic,600,600italic,700,700italic,800,800italic' rel='stylesheet' type='text/css'>
+    <link href='http://fonts.googleapis.com/css?family=Open+Sans:400,300,300italic,400italic,600,600italic,700,700italic,800,800italic' rel='stylesheet' type='text/css'>
+
+
+
+</head>
+<html>
+<body class="light_header">
+
+    @using (Html.BeginForm())
+    {       
+
+        <!-- Section -->
+        <section class="content_section">
+            <div class="content row_spacer clearfix">
+                <div class="rows_container clearfix">
+
+                        <div class="col-md-4">
+                            <div class="main_title upper">
+                                <h2>
+                                    <span class="line"><i class="ico-login"></i></span>
+                                    Log
+                                    <span class="main_title_c1"> in</span>
+                                </h2>
+                            </div>
+                            <form class="login_form_colored">
+                                <div class="lfc_user_row">
+                                    <span class="lfc_header">Painel de Controle</span>
+                                </div>
+                                <div class="lfc_user_row">
+                                    <label for="login_user_name">
+                                        <span class="lfc_alert"></span>
+                                        <i class="lfc_icon ico-user5"></i>
+                                        @Html.TextBoxFor(u => u.UserName)
+                                        @Html.ValidationMessageFor(u => u.UserName)
+                                    </label>
+                                </div>
+                                <div class="lfc_user_row">
+                                    <label for="login_password">
+                                        <span class="lfc_alert"></span>
+                                        <i class="lfc_icon ico-key3"></i>
+                                        @Html.PasswordFor(u => u.Password)
+                                        @Html.ValidationMessageFor(u => u.Password)
+                                    </label>
+                                </div>
+                                <div class="lfc_user_row clearfix">
+                                    <div class="my_col_half">
+                                        <label for="rememberme">
+                                            <span class="remember-box">
+                                                <input type="checkbox" id="rememberme" name="rememberme">
+                                                <span>Lembre-me</span>
+                                            </span>
+                                        </label>
+                                    </div>
+                                    <div class="my_col_half clearfix">                                         
+                                        <input type="submit" value="Login" class="main_button large_btn bottom_space"  />
+                                    </div>
+                                </div>                                
+                                <div class="alert alert-danger alert-dismissible" role="alert">
+                                    <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                                    @Html.ValidationSummary(true, "Falha no login. Verifique")
+                                </div>
+
+                            </form>
+                        </div>
+
+                    <div class="col-md-8">
+                    </div>
+
+                </div>
+            </div>
+        </section>
+
+    }
+
+    <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+    <script>window.jQuery || document.write('<script src="js/jquery.js"><\/script>')</script>
+    <script src="~/js/plugins.js"></script>
+    <script src="~/js/jquery.themepunch.tools.min.js" type="text/javascript"></script>
+    <script src="~/js/jquery.themepunch.revolution.min.js" type="text/javascript"></script>
+    <script src="~/js/isotope.pkgd.min.js"></script>
+    <!-- this is where we put our custom functions -->
+
+
+</body>
+
+</html>

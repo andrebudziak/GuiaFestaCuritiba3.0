@@ -1,0 +1,25 @@
+﻿@model IEnumerable<SiteGuiaFestaCuritiba3._0.Models.Banner>
+
+@using (Html.BeginForm("Index", "BannerPrincipal", FormMethod.Post))
+{
+    @Html.AntiForgeryToken()
+
+    <div id="owl-demo" class="owl-carousel owl-theme">
+
+        @foreach (var item in Model)
+        {
+            <div class="item">
+                <img class="feature_inner_ling" src="~/banners/@item.descricao" alt="@item.nome_fantasia">
+            </div>
+        }
+
+    </div>
+    <div class="main_title centered upper">
+        <div class="customNavigation">
+            <a class="main_button large_btn bottom_space btn prev"><span><i class="in_right ico-arrow-left3"></i><span>Anuncio Anterior </span></span></a>
+            <a class="main_button large_btn bottom_space btn next"><span><span>Proximo Anuncio </span><i class="in_right ico-arrow-right3"></i></span></a>
+        </div>
+    </div>
+
+}
+

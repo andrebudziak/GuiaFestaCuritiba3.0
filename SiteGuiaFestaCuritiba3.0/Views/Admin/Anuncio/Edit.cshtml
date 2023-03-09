@@ -1,0 +1,152 @@
+﻿@model SiteGuiaFestaCuritiba3._0.Models.Anuncio
+@{
+    ViewBag.Title = "Editar Anuncio";
+    Layout = "~/Views/Shared/_LayoutAdmin.cshtml";
+}
+
+<!-- Intro Banner -->
+<div class="welcome_banner">
+    <div class="content clearfix">
+        <h3>Painel de Controle - Editar - Anuncio</h3>
+    </div>
+</div>
+<!-- End Intro Banner -->
+
+@using (Ajax.BeginForm("Salvar_Anuncio", "Anuncio", new AjaxOptions { HttpMethod = "Post" }))
+{
+    @Html.AntiForgeryToken()
+
+    <table class="table table-hover">
+        <thead>
+            <tr>
+                <th colspan="12">Codigo:@Html.EditorFor(model => model.codigo, new { htmlAttributes = new { @class = "form-control", @readonly = "readonly" } })</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td>
+                    <table>
+                        <thead>
+                            <tr></tr>
+                            <tr></tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>
+                                    <div class="input-group">
+                                        <span class="input-group-btn">
+                                            @Html.EditorFor(model => model.codigo_cliente, new { htmlAttributes = new { @class = "form-control", @style = "width:100px;", @readonly = "readonly" } })
+                                        </span>
+                                    </div><!-- /input-group -->
+
+                                </td>
+                                <td>
+                                    @Html.EditorFor(model => model.nome_fantasia, new { htmlAttributes = new { @class = "form-control", @style = "width:400px;", @readonly = "readonly" } })
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+
+                </td>
+
+            </tr>
+
+            <tr>
+                <td>
+                    Cep:@Html.EditorFor(model => model.cep, new { htmlAttributes = new { @class = "form-control" } })
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    Bairro:@Html.EditorFor(model => model.bairro, new { htmlAttributes = new { @class = "form-control" } })
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    Cidade:@Html.EditorFor(model => model.cidade, new { htmlAttributes = new { @class = "form-control" } })
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    Endereço:@Html.EditorFor(model => model.endereco, new { htmlAttributes = new { @class = "form-control" } })
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    Telefone:@Html.EditorFor(model => model.telefone, new { htmlAttributes = new { @class = "form-control" } })
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    E-mail:@Html.EditorFor(model => model.email, new { htmlAttributes = new { @class = "form-control" } })
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    Site:@Html.EditorFor(model => model.site, new { htmlAttributes = new { @class = "form-control" } })
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    Status:<br />
+                    @if (Model.status == 1)
+                    {
+                        @Html.RadioButtonFor(model => model.status, "1", true) @Html.Label("Ativo")
+                        <text>&nbsp</text>
+                        @Html.RadioButtonFor(model => model.status, "0", false) @Html.Label("Inativo")
+
+                    }
+                    else if (Model.status == 0)
+                    {
+                        @Html.RadioButtonFor(model => model.status, "1", false) @Html.Label("Ativo")
+                        <text>&nbsp</text>
+                        @Html.RadioButtonFor(model => model.status, "0", true) @Html.Label("Inativo")
+                    }
+
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    Descrição:@Html.EditorFor(model => model.descricao, new { htmlAttributes = new { @class = "form-control" } })
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    Informações:
+                    @Html.TextAreaFor(model => model.informacoes, 5, 500, new { maxlength = 4000, @class = "form-control" })
+                </td>
+            </tr>
+        </tbody>
+    </table>
+
+
+    <table>
+        <thead>
+            <tr></tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td>
+                    <form action="@Url.Action("Salvar_Anuncio","Anuncio")" method="post">
+                        <div>
+                            <input type="submit" class="btn btn-default btn-lg" value="Salvar">
+                        </div>
+                    </form>
+                </td>
+                <td>
+                    <a class="main_button medium_btn bottom_space" href="@Url.Action("Listar_Anuncio", "Anuncio")" target="_self">
+                        <i class="in_left ico-backward"></i>Voltar
+                    </a>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+
+}
+
+<script type="text/javascript" src="http://js.nicedit.com/nicEdit-latest.js"></script>
+<script type="text/javascript">
+    //<![CDATA[
+    bkLib.onDomLoaded(function () { nicEditors.allTextAreas() });
+    //]]>
+</script>

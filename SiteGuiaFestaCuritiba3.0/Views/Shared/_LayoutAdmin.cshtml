@@ -1,0 +1,184 @@
+﻿
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<head>
+
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+
+    <!-- Important stuff for SEO, don't neglect. (And don't dupicate values across your site!) -->
+    <title>Painel de Controle</title>
+    <meta name="author" content="" />
+    <meta name="description" content="" />
+
+    <!-- Don't forget to set your site up: http://google.com/webmasters -->
+    <meta name="google-site-verification" content="" />
+    <meta name="Copyright" content="" />
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <!-- Use Iconifyer to generate all the favicons and touch icons you need: http://iconifier.net -->
+    <link rel="shortcut icon" href="~/images/favicon/favicon.ico" type="image/x-icon" />
+
+    <!-- concatenate and minify for production -->
+    <link rel="stylesheet" href="~/css/style.css" type="text/css" media="all" />
+    <link rel="stylesheet" type="~/text/css" href="css/settings.css" media="screen" />
+    <link rel="stylesheet" href="~/css/bootstrap.css" type="text/css" media="all" />
+    <link rel="stylesheet" href="~/css/animate.min.css" type="text/css" media="all" />
+
+    <link rel="stylesheet" href="~/css/magnific-popup.css" type="text/css" media="all" />
+    <link rel="stylesheet" href="~/css/icon-fonts.css" type="text/css" media="all" />
+
+    <link href='http://fonts.googleapis.com/css?family=Oswald:400,700,300' rel='stylesheet' type='text/css'>
+    <link href='http://fonts.googleapis.com/css?family=Lato:300,300italic,400italic,600,600italic,700,700italic,800,800italic' rel='stylesheet' type='text/css'>
+    <link href='http://fonts.googleapis.com/css?family=Open+Sans:400,300,300italic,400italic,600,600italic,700,700italic,800,800italic' rel='stylesheet' type='text/css'>
+
+    <link href="~/css/index.css" rel="stylesheet">
+    <link href="~/external/google-code-prettify/prettify.css" rel="stylesheet">
+
+    <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.9.0/jquery.min.js"></script>
+    <script src="~/external/jquery.hotkeys.js"></script>
+    <script src="~/external/google-code-prettify/prettify.js"></script>
+    <link href="~/css/font-awesome.css" rel="stylesheet" />
+    <script type="text/javascript" src="@Url.Content("~/Scripts/jquery-1.10.2.js")"></script>
+    <script type="text/javascript" src="@Url.Content("~/Scripts/jquery.unobtrusive-ajax.min.js")"></script>
+
+    
+</head>
+<html>
+<!-- Class ( site_boxed - dark - preloader1 - preloader2 - preloader3 - light_header - dark_sup_menu - menu_button_mode - transparent_header - header_on_side ) -->
+<body class="preloader3 light_header header_on_side site_boxed">
+
+    <div id="main_wrapper">
+        <header id="site_header">
+            <div class="topbar">
+                <span class="top_expande not_expanded">
+                    <i class="no_exp ico-angle-double-down"></i>
+                    <i class="exp ico-angle-double-up"></i>
+                </span>
+            </div>
+            <!-- End topbar -->
+
+            <div id="side_heder">
+                <div id="side_heder_in">
+                    <div id="navigation_bar">
+                        <div class="content">
+                            <div id="logo">
+                                <a href="index.html">
+                                    <img class="logo_dark" src="~/images/logo.png" alt="Guia de Festas Curitiba">
+                                    <img class="logo_light" src="~/images/logo.png" alt="Guia de Festas Curitiba">
+                                </a>
+                            </div>
+                            
+                            <nav id="main_nav">
+                                <div id="nav_menu">
+                                    <span class="mobile_menu_trigger">
+                                        <a href="#" class="nav_trigger"><span></span></a>
+                                    </span>
+                                    <ul id="navy" class="clearfix">
+                                        <li class="normal_menu mobile_menu_toggle current_page_item">
+                                            <a href="index.html"><span>Noticia</span></a>
+                                            <ul>
+                                                <li class="normal_menu">
+                                                   @Html.ActionLink("Cadastro", "Listar_Noticia", "Admin")
+                                                </li>
+                                            </ul>
+                                        </li>
+                                        <li class="normal_menu mobile_menu_toggle">
+                                            <a href="#"><span>Anuncio</span></a>
+                                            <ul>
+                                                <li class="normal_menu">
+                                                    @Html.ActionLink("Anuncio", "Listar_Anuncio", "Anuncio")
+                                                </li>
+                                                <li class="normal_menu">
+                                                    @Html.ActionLink("Link", "Listar_Link", "Anuncio_Link")
+                                                </li>
+                                            </ul>
+                                        </li>
+                                        <li class="normal_menu mobile_menu_toggle">
+                                            <a href="#"><span>Banner</span></a>
+                                            <ul>
+                                                <li class="normal_menu">
+                                                    @Html.ActionLink("Banner", "Listar_Banner", "Banner")                                                    
+                                                </li>
+                                                <li class="normal_menu">
+                                                    @Html.ActionLink("Categoria", "Listar_Categoria_Banner", "Categoria_Banner")
+                                                </li>
+                                            </ul>
+                                        </li>
+                                        <li class="normal_menu mobile_menu_toggle">
+                                            <a href="#"><span>Categoria</span></a>
+                                            <ul>
+                                                <li class="normal_menu"><a href="page-about-us.html">Cadastro</a></li>
+                                            </ul>
+                                        </li>
+                                        <li class="normal_menu mobile_menu_toggle">
+                                            <a href="#"><span>Usuario</span></a>
+                                            <ul>
+                                                <li class="normal_menu"><a href="page-about-us.html">Cadastro</a></li>
+                                            </ul>
+                                        </li>
+                                        <li class="normal_menu mobile_menu_toggle">
+                                            <a href="#"><span>Cliente</span></a>
+                                            <ul>
+                                                <li class="normal_menu"><a href="page-about-us.html">Cadastro</a></li>
+                                            </ul>
+                                        </li>
+                                        <li class="normal_menu mobile_menu_toggle">
+                                            <a href="#"><span>Relatório</span></a>
+                                            <ul>
+                                                <li class="normal_menu"><a href="page-about-us.html">Anuncio</a></li>
+                                                <li class="normal_menu"><a href="page-about-us.html">Banner</a></li>
+                                            </ul>
+                                        </li>
+
+
+                                    </ul>
+                                </div>
+                            </nav>
+                            <!-- End Nav -->
+
+                            <div class="clear"></div>
+                        </div>
+                    </div>
+                    <div class="side_header_social centered clearfix">
+                        <div id="share_on_socials">
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </header>
+        <!-- End Main Header -->
+
+        @RenderBody()        
+        <!-- footer -->
+        <footer id="footer">
+            <div class="footer_copyright">
+                <div class="container clearfix">
+                    <div class="col-md-6">
+                        <span class="footer_copy_text">Copyright &copy; 2015 Powered By André Budziak Neto  </span>
+                    </div>
+                    <div class="col-md-6 clearfix">
+                    </div>
+                </div>
+            </div>
+        </footer>
+        <!-- End footer -->
+        <a href="#0" class="hm_go_top"></a>
+    </div>
+    <!-- End wrapper -->
+
+    <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+    <script>window.jQuery || document.write('<script src="js/jquery.js"><\/script>')</script>
+    <script src="~/js/plugins.js"></script>
+    <script src="~/js/jquery.themepunch.tools.min.js" type="text/javascript"></script>
+    <script src="~/js/jquery.themepunch.revolution.min.js" type="text/javascript"></script>
+    <script src="~/js/isotope.pkgd.min.js"></script>
+    <!-- this is where we put our custom functions -->
+    <script type="text/javascript" src="~/js/functions.js"></script>
+
+
+</body>
+</html>

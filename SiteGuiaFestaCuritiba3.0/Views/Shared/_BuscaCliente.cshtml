@@ -1,0 +1,38 @@
+﻿@model IEnumerable<SiteGuiaFestaCuritiba3._0.Models.Cliente>
+@{
+    ViewBag.Title = "Busca Cliente";
+}
+@{
+    SiteGuiaFestaCuritiba3._0.Models.Cliente c;
+
+    var grid = new WebGrid(
+canPage: true,
+rowsPerPage: ViewBag.PageSize,
+canSort: true,
+ajaxUpdateContainerId: "gridCli");
+
+    grid.Bind(source: Model);
+    grid.Pager(WebGridPagerModes.All);
+
+    @grid.GetHtml(htmlAttributes: new { id = "gridCli" },   // id for ajaxUpdateContainerId parameter
+                                     fillEmptyRows: false,
+                                     tableStyle: "table table-hover",
+                                     selectedRowStyle: "select",
+                                     mode: WebGridPagerModes.All, columns: grid.Columns(
+                                     grid.Column(columnName: "codigo", header: "Codigo", format:@<text> <label id="lblColdigo">@item.codigo</label> </text>),
+                                     grid.Column(columnName: "nome_fantasia", header: "Nome", format:@<text> <label id="lblNomeFan">@item.nome_fantasia</label> </text>),
+                                     grid.Column("Selecione", header: null, format: @<text><button id="btnSel" type="button" class="main_button small_btn bottom_space" data-dismiss="modal" >Selecione</button></text>, canSort: false)
+                                     ))
+
+}
+
+<script>
+$(function () {
+    $("#gridCli tr").click(function () {
+        var id = $(this).find("#lblColdigo").html();
+        $("#txtCodigoCliente").val(id);
+        var nome = $(this).find("#lblNomeFan").html();
+        $("#txtNomeFantasia").val(nome);        
+    });
+});
+</script>

@@ -1,0 +1,189 @@
+﻿@model SiteGuiaFestaCuritiba3._0.Models.Banner
+@{
+    ViewBag.Title = "Editar Banner";
+    Layout = "~/Views/Shared/_LayoutAdmin.cshtml";
+}
+
+<!-- Intro Banner -->
+<div class="welcome_banner">
+    <div class="content clearfix">
+        <h3>Painel de Controle - Editar - Banner</h3>
+    </div>
+</div>
+<!-- End Intro Banner -->
+
+@using (Ajax.BeginForm("Salvar_Banner", "Banner", new AjaxOptions { HttpMethod = "Post", UpdateTargetId = "dvPrincipal" }, null, new { a = Model }))
+{
+    @Html.AntiForgeryToken()
+    <div id="dvPrincipal">
+
+        <table id="tblCriar" class="table table-hover">
+            <thead>
+                <tr>
+                    <th colspan="12">Codigo:@Html.EditorFor(model => model.codigo, new { htmlAttributes = new { @class = "form-control", @readonly = "readonly" } })</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>
+                        <table>
+                            <thead>
+                                <tr></tr>
+                                <tr></tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>
+                                        <div class="input-group">
+                                            <span class="input-group-btn">
+                                                @Html.EditorFor(model => model.codigo_cliente, new { htmlAttributes = new { @id = "txtCodigoCliente", @class = "form-control", @style = "width:100px;", @readonly = "readonly" } })
+                                                <button class="btn btn-default" data-toggle="modal" data-target="#mdlDetalheCliente" type="button"><span class="glyphicon glyphicon-search" aria-hidden="true"></span></button>
+
+                                            </span>
+                                        </div><!-- /input-group -->
+
+                                    </td>
+                                    <td>
+                                        @Html.EditorFor(model => model.nome_fantasia, new { htmlAttributes = new { @id = "txtNomeFantasia", @class = "form-control", @style = "width:400px;", @readonly = "readonly" } })
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+
+                    </td>
+
+                </tr>
+
+                <tr>
+                    <td>
+                        Banner: @Html.LabelFor(model => Model.descricao, Model.descricao, null) @Html.EditorFor(model => model.descricao, new { htmlAttributes = new {@type="file", @id = "txtBanner", @readonly = "readonly" } }) 
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <table>
+                            <thead>
+                                <tr></tr>
+                                <tr></tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>
+                                        <div class="input-group">
+                                            <span class="input-group-btn">
+                                                @Html.EditorFor(model => model.codigo_local_banner, new { htmlAttributes = new { @id = "txtCodigoLocalBanner", @class = "form-control", @style = "width:100px;", @readonly = "readonly" } })
+                                                <button class="btn btn-default" data-toggle="modal" data-target="#mdlDetalheLocal" type="button"><span class="glyphicon glyphicon-search" aria-hidden="true"></span></button>
+                                            </span>
+                                        </div><!-- /input-group -->
+
+                                    </td>
+                                    <td>
+                                        @Html.EditorFor(model => model.local_banner, new { htmlAttributes = new { @id = "txtLocalBanner", @class = "form-control", @style = "width:400px;", @readonly = "readonly" } })
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        Altura:@Html.EditorFor(model => model.altura, new { htmlAttributes = new { @class = "form-control" } })
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        Largura:@Html.EditorFor(model => model.largura, new { htmlAttributes = new { @class = "form-control" } })
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        Status:<br />
+                        @if (Model.status == 1)
+                        {
+                            @Html.RadioButtonFor(model => model.status, "1", true) @Html.Label("Ativo")
+                            <text>&nbsp</text>
+                            @Html.RadioButtonFor(model => model.status, "0", false) @Html.Label("Inativo")
+
+                        }
+                        else if (Model.status == 0)
+                        {
+                            @Html.RadioButtonFor(model => model.status, "1", false) @Html.Label("Ativo")
+                            <text>&nbsp</text>
+                            @Html.RadioButtonFor(model => model.status, "0", true) @Html.Label("Inativo")
+                        }
+
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+
+    </div>
+    <table>
+        <thead>
+            <tr></tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td>
+                    <input type="submit" class="btn btn-default btn-lg" value="Salvar" name="Command">
+                </td>
+                <td>
+                    <a class="main_button medium_btn bottom_space" href="@Url.Action("Listar_Banner", "Banner")" target="_self">
+                        <i class="in_left ico-backward"></i>Voltar
+                    </a>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+
+}
+
+
+<div class="modal fade" id="mdlDetalheCliente" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                <h4 class="modal-title">Selecione um Cliente</h4>
+            </div>
+            <div class="modal-body">
+                @using (Ajax.BeginForm("Salvar_Banner", "Banner", new AjaxOptions { HttpMethod = "Post", UpdateTargetId = "listaCliente" }))
+                {
+                    @Html.TextBox("SearchCliente") <input type="submit" id="btnSearch" value="Pesquisar" class="btn btn-default btn-lg" name="Command" />
+                }
+                <div id="listaCliente">
+                    @{ Html.RenderPartial("_BuscaCliente", Model.iCliente); }
+                </div>
+
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="main_button medium_btn bottom_space" data-dismiss="modal">Close</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<div class="modal fade" id="mdlDetalheLocal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                <h4 class="modal-title">Selecione um Local</h4>
+            </div>
+            <div class="modal-body">
+                @using (Ajax.BeginForm("Salvar_Banner", "Banner", new AjaxOptions { HttpMethod = "Post", UpdateTargetId = "listaLocal" }))
+                {
+                    @Html.TextBox("SearchCliente") <input type="submit" id="btnSearchLocal" value="PesquisarLocal" class="btn btn-default btn-lg" name="Command" />
+                }
+                <div id="listaLocal">
+                    @{ Html.RenderPartial("_BuscaLocal", Model.iLocalBanner); }
+                </div>
+
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="main_button medium_btn bottom_space" data-dismiss="modal">Close</button>
+            </div>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,214 @@
+﻿@model IEnumerable<SiteGuiaFestaCuritiba3._0.Models.Banner>
+
+@{
+    ViewBag.Title = "Banner";
+    Layout = "~/Views/Shared/_LayoutAdmin.cshtml";
+}
+
+<!-- Intro Banner -->
+<div class="welcome_banner">
+    <div class="content clearfix">
+        <h3>Painel de Controle - Banner</h3>
+        <table>
+            <thead>
+                <tr></tr>
+                <tr></tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>
+                        <form action="@Url.Action("Listar_Banner","Banner")" method="post">
+                            <div>
+                                @Html.TextBox("SearchString")
+                                <input type="submit" class="btn btn-default btn-lg" value="Pesquisar">
+                            </div>
+                        </form>
+                    </td>
+                    <td>
+                        <a class="main_button large_btn bottom_space" href="@Url.Action("Incluir_Banner", "Banner")" target="_self" style="color:lightseagreen">
+                            <i class="in_left ico-plus-circle fa-2x"></i>Incluir
+                        </a>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</div>
+<!-- End Intro Banner -->
+
+
+<div id="webgrid">
+
+    @{
+        var grid = new WebGrid(
+                    canPage: true,
+                    rowsPerPage: ViewBag.PageSize,
+                    canSort: true,
+                    ajaxUpdateContainerId: "grid"
+                    );
+
+        grid.Bind(source: Model);
+        grid.Pager(WebGridPagerModes.All);
+
+        @grid.GetHtml(htmlAttributes: new { id = "grid" },   // id for ajaxUpdateContainerId parameter
+                    fillEmptyRows: false,
+                    tableStyle: "table table-hover",
+                    mode: WebGridPagerModes.All, columns: grid.Columns(
+                 grid.Column(columnName: "codigo", header: "Codigo"),
+                 grid.Column(columnName: "nome_fantasia", header: "Nome"),
+                 grid.Column(columnName: "status", format:@<text>
+                    @if (item.status == 1)
+                    {
+                        <i class="fa fa-thumbs-o-up fa-2x" style="color:lightgreen"></i>
+                    }
+                    else
+                    {
+                        <i class="fa fa-thumbs-o-down fa-2x" style="color:red"></i>
+                    }
+
+
+                </text>),
+                 grid.Column("Selecione", format:@<text>
+
+                            <button type="button" class="main_button medium_btn bottom_space" data-toggle="modal" data-target="@String.Concat("#mdlDatelhe", item.codigo)" style="color:dodgerblue;">
+                                <i class="fa fa-plus-square-o fa-2x" style="color:dodgerblue"></i>Detalhe
+                            </button>
+                            <div class="modal fade" id="@String.Concat("mdlDatelhe", item.codigo)" tabindex="-1" role="dialog" aria-labelledby="myModalLabel1">
+                                <div class="modal-dialog" role="document">
+                                    <div class="modal-content">
+                                        <div class="modal-header">
+                                            <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                                            <div class="small_title">
+                                                <span class="small_title_con">
+                                                    <span class="s_icon"><i class="ico-info2"></i></span>
+                                                    <span class="s_text">@item.nome_fantasia</span>
+                                                </span>
+                                            </div>
+                                        </div>
+                                        <div class="modal-body">
+                                            <dl class="dl-horizontal">
+                                                <dt>
+                                                    Codigo
+                                                </dt>
+
+                                                <dd>
+                                                    @item.codigo
+                                                </dd>
+
+                                                <dt>
+                                                    Descrição
+                                                </dt>
+
+                                                <dd>
+                                                    @item.descricao
+                                                </dd>
+
+                                                <dt>
+                                                    Local Banner
+                                                </dt>
+
+                                                <dd>
+                                                    @item.local_banner
+                                                </dd>
+
+                                                <dt>
+                                                    Altura
+                                                </dt>
+
+                                                <dd>
+                                                    @item.altura
+                                                </dd>
+
+                                                <dt>
+                                                    Largura
+                                                </dt>
+
+                                                <dd>
+                                                    @item.largura
+                                                </dd>
+
+                                                <dt>
+                                                    Status
+                                                </dt>
+
+                                                <dd>
+                                                    @if (item.status == 1)
+                                                    {
+                                                        <i class="fa fa-thumbs-o-up fa-2x" style="color:lightgreen"></i>
+                                                    }
+                                                    else
+                                                    {
+                                                        <i class="fa fa-thumbs-o-down fa-2x" style="color:red"></i>
+                                                    }
+                                                </dd>
+
+                                            </dl>
+
+                                        </div>
+                                        <div class="modal-footer">
+                                            <button type="button" class="main_button medium_btn bottom_space" data-dismiss="modal">Close</button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <a href="@Url.Action("Editar_Banner", "Banner", new { id = @item.codigo })" target="_self" class="main_button medium_btn bottom_space" style="color:darkolivegreen">
+                                <i class="fa fa-pencil fa-2x" style="color:darkolivegreen"></i>Editar
+                            </a>
+
+                            <button type="button" class="main_button medium_btn bottom_space" data-toggle="modal" data-target="@String.Concat("#mdlDelete", item.codigo)" style="color:darkred">
+                                <i class="fa fa-trash-o fa-2x" style="color:darkred"></i>Excluir
+                            </button>
+                            <div class="modal fade" id="@String.Concat("mdlDelete", item.codigo)" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+                                <div class="modal-dialog" role="document">
+                                    <div class="modal-content">
+                                        <div class="modal-header">
+                                            <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                                            <div class="small_title">
+                                                <span class="small_title_con">
+                                                    <span class="s_icon"><i class="ico-eraser"></i></span>
+                                                    <span class="s_text">@item.nome_fantasia</span>
+                                                </span>
+                                            </div>
+                                        </div>
+                                        <div class="modal-body">
+                                            <h3 style="color:red">
+                                                <span class="glyphicon glyphicon-alert" aria-hidden="true" style="color:red"></span> Tem Certeza que deseja excluir ?
+                                            </h3>
+                                        </div>
+                                        <div class="modal-footer">
+                                            <table>
+                                                <thead>
+                                                    <tr></tr>
+                                                    <tr></tr>
+                                                </thead>
+                                                <tbody>
+                                                    <tr>
+                                                        <td>
+                                                            <form action="@Url.Action("Excluir_Banner","Banner",new { id = @item.codigo })" method="post">
+                                                                <input type="submit" value="Excluir" class="main_button medium_btn bottom_space" name="ExcluirAnuncio" />
+                                                            </form>
+                                                        </td>
+                                                        <td>
+                                                            <button type="button" class="main_button medium_btn bottom_space" data-dismiss="modal">Close</button>
+                                                        </td>
+                                                    </tr>
+                                                </tbody>
+                                            </table>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                </text>, canSort: false)
+                 ))
+
+    }
+
+    <div id="myLoadingElement" style="display: none;">
+        <i class="fa fa-spinner fa-pulse fa-3x fa-fw"></i>
+        <span class="sr-only">Carregando...</span>
+    </div>
+
+</div>
+

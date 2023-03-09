@@ -1,0 +1,195 @@
+﻿@model SiteGuiaFestaCuritiba3._0.Models.Anuncio
+@{
+    ViewBag.Title = "Incluir Anuncio";
+    Layout = "~/Views/Shared/_LayoutAdmin.cshtml";
+}
+
+<!-- Intro Banner -->
+<div class="welcome_banner">
+    <div class="content clearfix">
+        <h3>Painel de Controle - Incluir Anuncio</h3>
+    </div>
+</div>
+<!-- End Intro Banner -->
+
+@using (Ajax.BeginForm("Salvar_Anuncio", "Anuncio", new AjaxOptions { HttpMethod = "Post", UpdateTargetId = "dvPrincipal" }, null, new { a = Model }))
+{
+
+    @Html.AntiForgeryToken()
+
+    <div id="dvPrincipal">
+        <table id="tblCriar" class="table table-hover">
+            <thead>
+                <tr>
+                    <th colspan="13">Codigo:@Html.EditorFor(model => model.codigo, new { htmlAttributes = new { @class = "form-control", @readonly = "readonly" } })</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>
+                        <table>
+                            <thead>
+                                <tr></tr>
+                                <tr></tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>
+                                        <div class="input-group">
+                                            <span class="input-group-btn">
+                                                @Html.EditorFor(model => model.codigo_cliente, new { htmlAttributes = new {@id="txtCodigoCliente", @class = "form-control", @style = "width:100px;", @readonly = "readonly" } })
+                                                <button class="btn btn-default" data-toggle="modal" data-target="#mdlDetalheCliente" type="button"><span class="glyphicon glyphicon-search" aria-hidden="true"></span></button>
+                                            </span>
+                                        </div><!-- /input-group -->
+
+                                    </td>
+                                    <td>
+                                        @Html.EditorFor(model => model.nome_fantasia, new { htmlAttributes = new {@id="txtNomeFantasia", @class = "form-control", @style = "width:400px;", @readonly = "readonly" } })
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+
+
+                    </td>
+                </tr>
+
+                <tr>
+                    <td>
+                        Cep:@Html.EditorFor(model => model.cep, new { htmlAttributes = new { @class = "form-control" } })
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        Bairro:@Html.EditorFor(model => model.bairro, new { htmlAttributes = new { @class = "form-control" } })
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        Cidade:@Html.EditorFor(model => model.cidade, new { htmlAttributes = new { @class = "form-control" } })
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        Endereço:@Html.EditorFor(model => model.endereco, new { htmlAttributes = new { @class = "form-control" } })
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        Telefone:@Html.EditorFor(model => model.telefone, new { htmlAttributes = new { @class = "form-control" } })
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        E-mail:@Html.EditorFor(model => model.email, new { htmlAttributes = new { @class = "form-control" } })
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        Site:@Html.EditorFor(model => model.site, new { htmlAttributes = new { @class = "form-control" } })
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        Status:
+                        <table>
+                            <tbody>
+                                <tr>
+                                    @if (Model.status == 0)
+                                    {
+                                        <td style="width:50px;">
+                                            @Html.RadioButtonFor(model => Model.status, "1", true) @Html.Label("Ativo")
+                                        </td>
+                                        <td style="width:50px;">
+
+                                            @Html.RadioButtonFor(model => Model.status, "0", false) @Html.Label("Inativo")
+                                        </td>
+                                    }
+                                    else if (Model.status == 0)
+                                    {
+                                        <td style="width:50px;">
+
+                                            @Html.RadioButtonFor(model => Model.status, "1", false) @Html.Label("Ativo")
+                                        </td>
+                                        <td style="width:50px;">
+
+                                            @Html.RadioButtonFor(model => Model.status, "0", true) @Html.Label("Inativo")
+                                        </td>
+
+                                    }
+
+                                </tr>
+                            </tbody>
+                        </table>
+
+                    </td>
+
+
+                </tr>
+                <tr>
+                    <td>
+                        Descrição:@Html.EditorFor(model => model.descricao, new { htmlAttributes = new { @class = "form-control" } })
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        Informações:
+                        @Html.TextAreaFor(model => model.informacoes, 5, 500, new { maxlength = 4000, @class = "form-control" })
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+
+    <table>
+        <thead>
+            <tr></tr>
+            <tr></tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td>
+                    <input type="submit" class="btn btn-default btn-lg" value="Salvar" name="Command">
+                </td>
+                <td>
+                    <a class="main_button medium_btn bottom_space" href="@Url.Action("Listar_Anuncio", "Anuncio")" target="_self">
+                        <i class="in_left ico-backward"></i>Voltar
+                    </a>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+}
+
+
+
+<div class="modal fade" id="mdlDetalheCliente" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                <h4 class="modal-title">Selecione um Cliente</h4>
+            </div>
+            <div class="modal-body">
+                @using (Ajax.BeginForm("Salvar_Anuncio", "Anuncio", new AjaxOptions { HttpMethod = "Post", UpdateTargetId = "listaCliente" }))
+                {
+                    @Html.TextBox("SearchCliente") <input type="submit" id="btnSearch" value="Pesquisar" class="btn btn-default btn-lg" name="Command" />
+                }
+                <div id="listaCliente">
+                   @{ Html.RenderPartial("_BuscaCliente", Model.iCliente); }
+                </div>
+
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="main_button medium_btn bottom_space" data-dismiss="modal">Close</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script type="text/javascript" src="http://js.nicedit.com/nicEdit-latest.js"></script>
+<script type="text/javascript">
+    //<![CDATA[
+    bkLib.onDomLoaded(function () { nicEditors.allTextAreas() });
+    //]]>
+</script>

@@ -1,0 +1,161 @@
+﻿@model IEnumerable<SiteGuiaFestaCuritiba3._0.Models.Anuncio>
+@{
+    ViewBag.Title = "Guia de Festas Curitiba";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div class="container-fluid">
+
+    <ul class="list-group">
+        <li class="list-group-item">
+            <span class="badge">@ViewBag.Categoria</span>
+            Categoria Selecionada
+        </li>
+    </ul>
+
+    <div class="dropdown">
+        <ul class="list-group">
+            <li class="list-group-item">
+
+                <button class="btn btn-default dropdown-toggle" type="button" id="dropdownMenu1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
+                    Ordenar por:
+                    <span class="caret"></span>
+                </button>
+                <ul class="dropdown-menu" aria-labelledby="dropdownMenu1">
+                    <li>@Html.ActionLink("Nome", "Index", "Categoria", new { ord = "Nome", id = ViewBag.categoria_id, categoria = ViewBag.categoria }, new { @href = "/Categoria/" + ViewBag.Categoria + "/" + ViewBag.Categoria_id })</li>
+                    <li>@Html.ActionLink("Bairro", "Index", "Categoria", new { ord = "Bairo", id = ViewBag.categoria_id, categoria = ViewBag.categoria }, new { @href = "/Categoria/" + ViewBag.Categoria + "/" + ViewBag.Categoria_id })</li>
+                </ul>
+
+            </li>
+        </ul>
+
+    </div>
+
+    @using (Ajax.BeginForm("Index", "Categoria", new AjaxOptions { HttpMethod = "Post", UpdateTargetId = "dvAnuncio" }))
+    {
+
+        Html.AntiForgeryToken();
+
+
+        foreach (var item in Model)
+        {
+
+            <div id="dvAnuncio" class="panel panel-default">
+                <div class="panel-heading">
+                </div>
+                <div class="panel-body">
+                    <div class="table-responsive">
+
+                        <table class="table table-hover">
+                            <thead>
+                                <tr>
+                                    <th>
+                                        <a href="@String.Concat("http://", item.site)" target="_blank" style="text-decoration: none;color:gray;">
+                                            <img class="img-responsive" src="~/logos/@item.logo" style="width:136px; height:96px;">
+                                        </a>
+                                    </th>
+                                    <th>
+                                        <a href="@String.Concat("http://", item.site)" target="_blank" style="text-decoration: none;color:gray;">
+                                            <h4>@item.nome_fantasia</h4>
+                                        </a>
+                                    </th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <th scope="row" style="text-align: right;">
+                                        <a href="tel:+@item.telefone" target="_self" style="text-decoration: none;color:gray;">
+                                            <span class="glyphicon glyphicon-earphone" aria-hidden="true"></span>
+                                        </a>
+                                    </th>
+                                    <td>
+                                        <a href="tel:+@item.telefone" target="_self" style="text-decoration: none;color:gray;">
+                                            @item.telefone
+                                        </a>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <th scope="row" style="text-align: right;">
+                                        <span class="glyphicon glyphicon-ok" aria-hidden="true"></span>
+                                    </th>
+                                    <td>
+                                        @item.descricao
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <th scope="row" style="text-align: right;">
+                                        <a href="@String.Concat("http://maps.google.com/maps?q=", item.endereco,"+",item.bairro,"+",item.cidade)" target="_blank" style="text-decoration: none;color:gray;">
+                                            <span class="glyphicon glyphicon-pushpin" aria-hidden="true"></span>
+                                        </a>
+                                    </th>
+                                    <td>
+                                        <a href="@String.Concat("http://maps.google.com/maps?q=", item.endereco,"+",item.bairro,"+",item.cidade)" target="_blank" style="text-decoration: none;color:gray;">
+                                            <span>@item.endereco <span> - </span> @item.bairro <span> - </span> @item.cidade</span>
+                                        </a>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <th scope="row" style="text-align: right;">
+                                        <a href="@String.Concat("mailto:", item.email)" target="_self" style="text-decoration: none;color:gray;">
+                                            <span class="glyphicon glyphicon-envelope" aria-hidden="true"></span>
+                                        </a>
+                                    </th>
+                                    <td>
+                                        <a href="@String.Concat("mailto:", item.email)" target="_self" style="text-decoration: none;color:gray;">
+                                            Envienos um E-mail
+                                        </a>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <th scope="row" style="text-align: right;">
+                                        <a href="@String.Concat("http://", item.site)" target="_blank" style="text-decoration: none;color:gray;">
+                                            <span class="glyphicon glyphicon-globe" aria-hidden="true"></span>
+                                        </a>
+                                    </th>
+                                    <td>
+                                        <a href="@String.Concat("http://", item.site)" target="_blank" style="text-decoration: none;color:gray;">
+                                            Acesse nosso Site
+                                        </a>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <th scope="row" style="text-align: right;">
+                                    </th>
+                                    <td>
+                                        <div id="share_on_socials">
+                                            <a class="facebook" href="@item.facebook" target="_blank"><i class="ico-facebook4"></i></a>
+                                            <a class="twitter" href="@item.twitter" target="_blank"><i class="ico-twitter4"></i></a>
+                                            <a class="googleplus" href="@item.gmais" target="_blank"><i class="ico-google-plus"></i></a>
+                                            <a class="pinterest" href="@item.orkut" target="_blank"><i class="ico-pinterest-p"></i></a>
+                                        </div>
+                                    </td>
+                                </tr>
+
+                            </tbody>
+                        </table>
+
+                        <div>
+                            <a class="btn_c color2 small_btn" role="button" data-toggle="collapse" data-parent="#accordion" href="@String.Concat("#collapse", item.codigo)" aria-expanded="false" aria-controls="@String.Concat("collapse", item.codigo)">
+                                <span class="btn_c_ic_a"><i class="ico-user4"></i></span>
+                                <span class="btn_c_t">Saiba Mais</span>
+                                <span class="btn_c_ic_b"><i class="ico-user4"></i></span>
+                            </a>
+                        </div>
+
+                        <div class="collapse" id="@String.Concat("collapse", item.codigo)">
+                            <p>
+                                @item.informacoes
+                            </p>
+
+                        </div>
+
+
+                    </div>
+                </div>
+            </div>
+
+        }
+
+    }
+</div>
+

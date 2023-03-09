@@ -1,0 +1,37 @@
+﻿@model IEnumerable<SiteGuiaFestaCuritiba3._0.Models.Local_Banner>
+@{
+    ViewBag.Title = "Busca Local";
+}
+@{
+
+    var grid = new WebGrid(
+canPage: true,
+rowsPerPage: ViewBag.PageSize,
+canSort: true,
+ajaxUpdateContainerId: "gridLocal");
+
+    grid.Bind(source: Model);
+    grid.Pager(WebGridPagerModes.All);
+
+    @grid.GetHtml(htmlAttributes: new { id = "gridLocal" },   // id for ajaxUpdateContainerId parameter
+                                     fillEmptyRows: false,
+                                     tableStyle: "table table-hover",
+                                     selectedRowStyle: "select",
+                                     mode: WebGridPagerModes.All, columns: grid.Columns(
+                                     grid.Column(columnName: "codigo", header: "Codigo", format:@<text> <label id="lblColdigo">@item.codigo</label> </text>),
+                                     grid.Column(columnName: "descricao", header: "Local", format:@<text> <label id="lblNomeFan">@item.descricao</label> </text>),
+                                     grid.Column("Selecione", header: null, format: @<text><button id="btnSel" type="button" class="main_button small_btn bottom_space" onclick="buttonClicked();" data-dismiss="modal">Selecione</button></text>, canSort: false)
+                                     ))
+
+}
+
+<script>
+$(function () {
+    $("#gridLocal tr").click(function () {
+        var id = $(this).find("#lblColdigo").html();
+        $("#txtCodigoLocalBanner").val(id);
+        var nome = $(this).find("#lblNomeFan").html();
+        $("#txtLocalBanner").val(nome);
+    });
+});
+</script>

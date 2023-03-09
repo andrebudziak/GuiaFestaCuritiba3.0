@@ -1,0 +1,315 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>@ViewBag.Title</title>
+
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+
+    <meta name="author" content="" />
+    <meta name="description" content="" />
+
+    <meta name="google-site-verification" content="" />
+    <meta name="Copyright" content="" />
+    
+    <!-- Use Iconifyer to generate all the favicons and touch icons you need: http://iconifier.net -->
+    <link rel="shortcut icon" href="~/images/favicon/favicon.ico" type="image/x-icon" />
+
+    <!-- concatenate and minify for production -->
+    <link rel="stylesheet" href="~/css/style.css" type="text/css" media="all" />
+    <link rel="stylesheet" type="text/css" href="~/css/settings.css" media="screen" />
+    <link rel="stylesheet" href="~/css/bootstrap.css" type="text/css" media="all" />
+    <link rel="stylesheet" href="~/css/mediaelementplayer.css" />
+    <link rel="stylesheet" href="~/css/animate.min.css" type="text/css" media="all" />
+
+    <link rel="stylesheet" href="~/css/magnific-popup.css" type="text/css" media="all" />
+    <link rel="stylesheet" href="~/css/icon-fonts.css" type="text/css" media="all" />
+
+
+    <link href='http://fonts.googleapis.com/css?family=Oswald:400,700,300' rel='stylesheet' type='text/css'>
+    <link href='http://fonts.googleapis.com/css?family=Lato:300,300italic,400italic,600,600italic,700,700italic,800,800italic' rel='stylesheet' type='text/css'>
+    <link href='http://fonts.googleapis.com/css?family=Open+Sans:400,300,300italic,400italic,600,600italic,700,700italic,800,800italic' rel='stylesheet' type='text/css'>
+
+    <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/font-awesome/4.6.3/css/font-awesome.min.css">
+    <script type="text/javascript" src="@Url.Content("~/Scripts/jquery-1.10.2.js")"></script>
+    <script type="text/javascript" src="@Url.Content("~/Scripts/jquery.unobtrusive-ajax.min.js")"></script>
+
+</head>
+<body class="preloader3 light_header">
+    <div id="preloader">
+        <div class="spinner">
+            <div class="sk-dot1"></div><div class="sk-dot2"></div>
+            <div class="rect3"></div><div class="rect4"></div>
+            <div class="rect5"></div>
+        </div>
+    </div>
+
+    <div id="main_wrapper">
+        <!-- Menu -->
+        <header id="site_header">
+            <div class="topbar">
+                <span class="top_expande not_expanded">
+                    <i class="no_exp ico-angle-double-down"></i>
+                    <i class="exp ico-angle-double-up"></i>
+                </span>
+            </div>
+            <!-- End topbar -->
+
+            <div id="navigation_bar">
+                <div class="content">
+                    <div id="logo">
+                        <a href="index.html">
+                            <img class="logo_dark" src="~/images/logo.png" alt="Guia de Festas Curitiba">
+                            <img class="logo_light" src="~/images/logo.png" alt="Guia de Festas Curitiba">
+                        </a>
+                    </div>
+
+                    <!-- Top Search -->
+                    <form class="top_search clearfix small_top_search">
+                        <div class="top_search_con">
+                            <input type="text" class="s" placeholder="Pesquisar ...">
+                            <span class="top_search_icon"><i class="ico-search4"></i></span>
+                            <input type="submit" class="top_search_submit">
+                        </div>
+                    </form>
+                    <!-- End Top Search -->
+
+                    <nav id="main_nav">
+                        <div id="nav_menu">
+                            <span class="mobile_menu_trigger">
+                                <a href="#" class="nav_trigger"><span></span></a>
+                            </span>
+                            <ul id="navy" class="clearfix">
+                                <li class="normal_menu mobile_menu_toggle current_page_item">
+                                    <a href="~/Home/Index"><span>Home</span></a>
+                                </li>
+                                <li class="normal_menu mobile_menu_toggle">
+                                    <a href="#"><span>Locais</span></a>
+                                    <ul>
+                                        @{Html.RenderAction("Categoria", "Home", new { tipo_categoria = 1 });}
+                                    </ul>
+                                </li>
+                                <li class="normal_menu mobile_menu_toggle">
+                                    <a href="#"><span>Decoração</span></a>
+                                    <ul>
+                                        @{Html.RenderAction("Categoria", "Home", new { tipo_categoria = 2 });}
+                                    </ul>
+                                </li>
+                                <li class="normal_menu mobile_menu_toggle">
+                                    <a href="#"><span>Alimentação</span></a>
+                                    <ul>
+                                        @{Html.RenderAction("Categoria", "Home", new { tipo_categoria = 3 });}
+                                    </ul>
+                                </li>
+                                <li class="normal_menu mobile_menu_toggle">
+                                    <a href="#"><span>Diversão</span></a>
+                                    <ul>
+                                        @{Html.RenderAction("Categoria", "Home", new { tipo_categoria = 4 });}
+                                    </ul>
+                                </li>
+                                <li class="normal_menu mobile_menu_toggle">
+                                    <a href="#"><span>Serviços</span></a>
+                                    <ul>
+                                        @{Html.RenderAction("Categoria", "Home", new { tipo_categoria = 5 });}
+                                    </ul>
+                                </li>
+
+                                <li class="normal_menu mobile_menu_toggle">
+                                    <a href="#"><span>Tipos</span></a>
+                                    <ul>
+                                        @{Html.RenderAction("Categoria", "Home", new { tipo_categoria = 6 });}
+                                    </ul>
+                                </li>
+
+                            </ul>
+                        </div>
+                    </nav>
+                    <!-- End Nav -->
+
+                    <div class="clear"></div>
+                </div>
+            </div>
+        </header>
+        <!-- End Menu -->
+        <!-- OWL Slider -->
+        @{Html.RenderAction("BannerPrincipal", "Home");}
+        <!-- End OWL Slider -->
+        <!-- Our Blog Grids -->
+        <section class="content_section bg_gray">
+            <div class="content row_spacer no_padding">
+
+                <!-- All Content -->
+                <div class="content_spacer clearfix">
+                    <div class="content_block col-md-9 f_left">
+                        <!-- Filter Content -->
+                        @RenderBody()
+                        <!-- End Filter Content -->
+                    </div>
+                    <!-- End Content Block -->
+                    <!-- sidebar -->
+                    <!-- Popular Posts -->
+                    @{Html.RenderAction("BannerLateral", "Home");}
+                    <!-- Popular Posts -->
+                    <!-- End sidebar -->
+                </div>
+                <!-- End All Content -->
+
+            </div>
+        </section>
+        <!-- End Our Blog Grids -->
+        <!-- footer -->
+        <footer id="footer">
+            <div class="footer_copyright">
+                <div class="container clearfix">
+                    <section class="content_section">
+                        <div class="container icons_spacer icon_boxes_con style1 clearfix">
+                            <div class="col-md-3">
+                                <div class="service_box">
+                                    <span class="icon"><i class="ico-user2"></i></span>
+                                    <div class="service_box_con centered">
+                                        <h3>Area de Clientes</h3>
+                                        <span class="desc">Informações sobre o Guia de Festas Curitiba, atualizações, dúvidas, como anunciar e fale conosco</span>
+                                        <a href="#" class="ser-box-link"><span></span>Saiba mais</a>
+                                    </div>
+                                </div>
+                            </div>
+
+                        </div>
+                    </section>
+                </div>
+
+            </div>
+        </footer>
+        <!-- End footer -->
+
+        <a href="#" class="hm_go_top">Top</a>
+
+    </div>
+
+    <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+    <script>window.jQuery || document.write('<script src="~/js/jquery.js"><\/script>')</script>
+    <script src="~/js/jquery.themepunch.tools.min.js" type="text/javascript"></script>
+    <script src="~/js/jquery.themepunch.revolution.min.js" type="text/javascript"></script>
+    <script src="~/js/plugins.js"></script>
+    <script src="~/js/mediaelement-and-player.min.js"></script>
+    <script src="~/js/isotope.pkgd.min.js"></script>
+    <!-- this is where we put our custom functions -->
+    <script type="text/javascript" src="~/js/functions.js"></script>
+
+    <style>
+        #bar {
+            width: 0%;
+            max-width: 100%;
+            height: 6px;
+            background: #1ccdca;
+        }
+
+        #progressBar {
+            width: 100%;
+            background: #EDEDED;
+        }
+    </style>
+
+    <script>
+        $(document).ready(function () {
+
+            var owl = $("#owl-demo");
+
+            var time = 12; // time in seconds
+
+            var $progressBar,
+                $bar,
+                $elem,
+                isPause,
+                tick,
+                percentTime;
+
+            //Init the carousel
+            owl.owlCarousel({
+                slideSpeed: 1000,
+                paginationSpeed: 8000,
+                singleItem: true,
+                afterInit: progressBar,
+                afterMove: moved,
+                startDragging: pauseOnDragging,
+                pagination: true,
+            });
+
+            //Init progressBar where elem is $("#owl-demo")
+            function progressBar(elem) {
+                $elem = elem;
+                //build progress bar elements
+                buildProgressBar();
+                //start counting
+                start();
+            }
+
+            //create div#progressBar and div#bar then prepend to $("#owl-demo")
+            function buildProgressBar() {
+                $progressBar = $("<div>", {
+                    id: "progressBar"
+                });
+                $bar = $("<div>", {
+                    id: "bar"
+                });
+                $progressBar.append($bar).prependTo($elem);
+            }
+
+            function start() {
+                //reset timer
+                percentTime = 0;
+                isPause = false;
+                //run interval every 0.01 second
+                tick = setInterval(interval, 10);
+            };
+
+            function interval() {
+                if (isPause === false) {
+                    percentTime += 1 / time;
+                    $bar.css({
+                        width: percentTime + "%"
+                    });
+                    //if percentTime is equal or greater than 100
+                    if (percentTime >= 100) {
+                        //slide to next item
+                        $elem.trigger('owl.next')
+                    }
+                }
+            }
+
+            //pause while dragging
+            function pauseOnDragging() {
+                isPause = true;
+            }
+
+            //moved callback
+            function moved() {
+                //clear interval
+                clearTimeout(tick);
+                //start again
+                start();
+            }
+
+            // Custom Navigation Events
+            $(".next").click(function () {
+                owl.trigger('owl.next');
+            })
+            $(".prev").click(function () {
+                owl.trigger('owl.prev');
+            })
+
+            //uncomment this to make pause on mouseover
+            // $elem.on('mouseover',function(){
+            //   isPause = true;
+            // })
+            // $elem.on('mouseout',function(){
+            //   isPause = false;
+            // })
+        });
+
+    </script>
+
+</body>
+
+</html>

@@ -1,0 +1,39 @@
+﻿@model IEnumerable<SiteGuiaFestaCuritiba3._0.Models.Noticia>
+
+@using (Html.BeginForm("Index", "Noticia", FormMethod.Post))
+{
+    @Html.AntiForgeryToken()
+
+    foreach (var item in Model)
+    {
+
+        <div class="hm_filter_wrapper masonry_posts two_blocks colored_masonry">
+            <ul class="hm_filter_wrapper_con">
+                <li class="filter_item_block animated" data-animation-delay="300" data-animation="fadeInUp">
+                    <div class="blog_grid_block" data-bg="#398098">
+                        <div class="blog_grid_desc">
+                            <h6 class="title"><a href="#">@item.nome_fantasia</a></h6>
+                        </div>
+                        <div class="feature_inner">
+                            <div class="feature_inner_corners">
+                                <div class="feature_inner_btns">
+                                    <a href="#" class="expand_image"><i class="ico-maximize"></i></a>
+                                    <a href="#" class="icon_link"><i class="ico-link3"></i></a>
+                                </div>
+                                <a href="~/noticia/@item.imagem_destaque" class="feature_inner_ling" data-rel="magnific-popup">
+                                    <img src="~/noticia/@item.imagem_destaque" alt="Post Title">
+                                </a>
+                            </div>
+                        </div>
+                        <div class="blog_grid_con">
+                            <a href="#" class="blog_grid_format"><i class="ico-image4"></i></a>
+                            <p class="desc">@item.noticia</p>
+                        </div>
+                    </div>
+                </li><!-- Item -->
+            </ul>
+        </div>
+    }
+
+
+}

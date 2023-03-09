@@ -1,0 +1,54 @@
+﻿@model IEnumerable<SiteGuiaFestaCuritiba3._0.Models.Banner>
+
+@using (Html.BeginForm("Index", "BannerLateral", FormMethod.Post))
+{
+    @Html.AntiForgeryToken()
+    <aside id="sidebar" class="col-md-3 right_sidebar">
+        <div class="widget_block">
+            <h6 class="widget_title">Publicidade</h6>
+            <div class="posts_widget">
+                <ul class="posts_widget_list2">
+                @foreach (var item in Model)
+                {
+                        <li class="clearfix">
+                            <div class="centered">
+                                <a id="dLabelB" href="#" role="button" aria-expanded="false" data-toggle="modal" data-target="#myModalB_@item.codigo">
+                                    <img class="img-responsive" alt="" src="~/banners/@item.miniatura">
+                                </a>
+
+                                <div class="modal fade" id="myModalB_@item.codigo" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+                                    <div class="modal-dialog modal-lg">
+                                        <div class="modal-content">
+                                            <div class="modal-header">
+                                                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                                                <h4 class="modal-title" id="myModalLabel">
+                                                    <div class="main_title upper small">
+                                                        <h2><span class="line"><span class="dot"></span></span>@item.nome_fantasia</h2>
+                                                    </div>
+                                                </h4>
+                                            </div>
+                                            <div class="modal-body">
+                                                <a href="@item.site" target="_blank" class="btn_a">
+                                                    <img alt="" src="~/banners/@item.descricao">
+                                                </a>
+                                            </div>
+                                            <div class="modal-footer">
+                                                <a class="btn_a medium_btn bottom_space" target="_self" href="#" data-dismiss="modal">
+                                                    <span><i class="in_left ico-close"></i><span>Fechar</span><i class="in_right ico-close"></i></span>
+                                                </a>
+                                            </div>
+
+                                        </div>
+                                    </div>
+                                </div>
+
+
+                            </div>
+                        </li>
+                    }
+                </ul>
+            </div>
+        </div>
+    </aside>
+}
+
